@@ -1,0 +1,4 @@
+# butian-ai-workflow 运行时依赖
+# 仅 scope_validator.py 需要 pyyaml；其余脚本均用 Python 标准库。
+# 安装：pip install -r requirements.txt
+pyyaml>=6.0

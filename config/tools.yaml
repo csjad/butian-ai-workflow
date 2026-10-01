@@ -1,0 +1,24 @@
+# 外部工具注册表 — safe_exec 据此发现并管控本机 CLI 工具
+# find_tool 解析顺序: BUTIAN_TOOLS_BIN -> go env GOBIN -> 本表 extra_paths -> 系统 PATH
+# proxy: 可选上游代理（Burp 抓包用）。默认不自动启用，需环境变量开启（见 safe_exec）
+proxy: "http://127.0.0.1:8080"
+
+tools:
+  nmap:
+    enabled: true
+    risk: medium
+    scope_required: true
+    description: "端口扫描补充（比 naabu 更细，支持服务/版本探测）"
+    extra_paths:
+      - "C:/Program Files (x86)/Nmap"      # nmap 默认安装路径（按需修改）
+    default_args: "--top-ports 100 --max-rate 50 -T2 -Pn"
+    notes: "必须限速；仅扫授权目标；-Pn 跳过主机发现更温和"
+
+  # 既有 Go 工具（保持一致，extra_paths 冗余但无害）
+  subfinder:   {enabled: true, risk: low,  extra_paths: ["$(go env GOPATH)/bin"]}
+  httpx:       {enabled: true, risk: low,  extra_paths: ["$(go env GOPATH)/bin"]}
+  naabu:       {enabled: true, risk: medium, extra_paths: ["$(go env GOPATH)/bin"]}
+  katana:      {enabled: true, risk: low,  extra_paths: ["$(go env GOPATH)/bin"]}
+  nuclei:      {enabled: true, risk: medium, extra_paths: ["$(go env GOPATH)/bin"]}
+  gau:         {enabled: true, risk: low,  extra_paths: ["$(go env GOPATH)/bin"]}
+  waybackurls: {enabled: true, risk: low,  extra_paths: ["$(go env GOPATH)/bin"]}

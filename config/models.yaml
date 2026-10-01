@@ -1,0 +1,40 @@
+# LLM 模型配置（OpenAI 兼容接口）
+# ⚠️ API Key 一律走环境变量，禁止写入本文件（已 gitignore）。
+#    设置： export DEEPSEEK_API_KEY=...   export MIMO_API_KEY=...
+
+default_provider: deepseek
+
+providers:
+  deepseek:
+    base_url: "https://api.deepseek.com/v1"   # 或你的中转地址（如 CC Switch）
+    api_key_env: "DEEPSEEK_API_KEY"
+    # 模型（按你账号实际可用名填写；v4 系列若走中转请改为对应名称）
+    models:
+      - "deepseek-chat"
+      - "deepseek-reasoner"
+    # 用于：vuln-scan 的 JS 语义分析、vuln-verify 的真假判定
+    default_model: "deepseek-chat"
+
+  mimo:
+    # 小米 MiMo 大模型（公开 OpenAI 兼容）
+    # 按量 key（sk- 开头）用 base_url；TokenPlan（tp- 开头）用 token_plan_base_url
+    base_url: "https://api.xiaomimimo.com/v1"
+    token_plan_base_url: "https://token-plan-cn.xiaomimimo.com/v1"
+    api_key_env: "MIMO_API_KEY"
+    models:
+      - "mimo-v2.5"
+      - "mimo-v2.5-pro"
+      # v2-flash / v2-pro / v2-omni 已于 2026-06-30 官方废弃，勿再使用
+    default_model: "mimo-v2.5"
+
+# 各阶段模型偏好（可覆盖 default_model）
+stage_models:
+  js_analysis: mimo        # JS 语义分析可用 MiMo
+  vuln_verify: deepseek    # 验证判定用 DeepSeek 推理
+  impact_assess: deepseek
+
+# 安全：本地兜底（若配置 OLLAMA_BASE_URL 则启用离线模式）
+local_fallback:
+  enabled: false
+  base_url: "http://localhost:11434/v1"
+  model: "qwen3-vl:8b"

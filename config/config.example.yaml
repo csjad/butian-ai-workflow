@@ -1,0 +1,41 @@
+# 授权范围模板（复制为 config/scope.yaml 并填写）
+# ⚠️ 仅填写你已获书面/明确授权的资产。
+# ⚠️ 本文件含敏感授权信息，已被 .gitignore 忽略，严禁提交。
+
+scope:
+  # 授权域名（支持 *. 通配，表示含子域）
+  domains:
+    - example.com
+    - "*.example.com"
+  # 授权 IP / CIDR（可选）
+  ips: []
+  # 路径前缀限制（可选；置空=该域名下全路径允许，但仍限域名/IP）
+  # 例：仅允许 API 路径可写 ["/api/*"]
+  paths: []
+  # 排除列表（命中即拒绝）
+  exclude:
+    - "prod-db.internal"
+    - "admin.example.com"
+  # 单次任务速率上限（rps）
+  rate_limit: 50
+  # 单次任务请求数上限
+  max_requests: 10000
+  # 授权时间窗口（ISO8601，格式 start/end）
+  time_window: "2026-08-17T14:00/2026-08-18T14:00"
+  # 允许使用的工具（safe_exec 会校验）
+  allowed_tools:
+    - subfinder
+    - httpx
+    - naabu
+    - katana
+    - nuclei
+    - dalfox
+    - gau
+    - waybackurls
+  # 明令禁止的行为（绝不执行）
+  forbidden_behaviors:
+    - no_exploit_with_data_modification
+    - no_dos
+    - no_lateral_movement
+    - no_data_exfiltration
+    - no_persistence

@@ -1,0 +1,85 @@
+# 授权范围配置（示例模板）
+# ---------------------------------------------------------------
+# 复制为 config/scope.yaml 后填入你自己的真实授权范围。
+# config/scope.yaml 已在 .gitignore 中，绝不会被提交。
+#
+# 填写原则：
+#   - 只写授权书上明确列出的资产，宁少勿多
+#   - 拿不准的一律放 exclude，宁可漏测不可越界
+#   - time_window 必须与授权窗口一致，过期即失效
+# ---------------------------------------------------------------
+# 自检（把 example-a.com 换成你的授权域）：
+#   python scripts/scope_validator.py --scope config/scope.yaml --target www.example-a.com  （应 ALLOW）
+#   python scripts/scope_validator.py --scope config/scope.yaml --target www.example-outside.com （应 DENY）
+scope:
+  # ① 授权域（支持 *. 通配；只写授权范围内的）
+  domains:
+    - "*.example-a.com"
+    - "*.example-b.com.cn"
+  # ② 授权 IP / CIDR（没有就留空，别硬填）
+  ips: []
+  # ③ 路径前缀限定（空 = 域内全路径）
+  paths: []
+
+  # ④ 排除列表：优先级高于白名单，一票否决
+  exclude:
+    # 认证/危险动作
+    - "login"
+    - "signin"
+    - "logout"
+    - "register"
+    - "password"
+    - "auth"
+    - "sso"
+    - "delete"
+    - "remove"
+    - "admin"
+    - "manage"
+    - "wp-admin"
+    # 交易/资金
+    - "pay"
+    - "checkout"
+    - "order"
+    - "cart"
+    - "trade"
+    - "settle"
+    - "wallet"
+    # 个人数据/人力
+    - "careers"
+    - "jobs"
+    - "hr."
+    - "resume"
+    - "mail"
+    - "vpn"
+    # 测试/预发环境（避免影响非生产）
+    - "test."
+    - "dev."
+    - "uat"
+    - "staging"
+    - "sandbox"
+    - "demo."
+
+  # ⑤ 速率与总量：给自己上枷锁
+  rate_limit: 5              # 每秒最多 5 个请求
+  max_requests: 600          # 单批次总请求上限
+  time_window: "2026-01-01T00:00/2026-01-07T23:59"   # 授权时间窗（务必与授权一致）
+
+  # ⑥ 允许的工具
+  allowed_tools:
+    - httpx
+    - katana
+    - nuclei
+    - naabu
+
+  # ⑦ 禁止行为（写死，不给自己留解释空间）
+  forbidden_behaviors:
+    - no_exploit_with_data_modification
+    - no_dos
+    - no_lateral_movement
+    - no_data_exfiltration
+    - no_persistence
+    - no_auth_bruteforce
+    - no_registration
+    - no_waf_bypass
+    - no_customer_data_access
+    - no_payment_interaction

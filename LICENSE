@@ -1,0 +1,34 @@
+MIT License
+
+Copyright (c) 2026 csjad
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 附加免责与使用限制（Addendum）
+
+本软件用于**已获得明确授权的**安全研究与防御性评估。
+
+使用者必须自行确保：
+1. 仅对持有书面或平台明确授权的目标发起任何流量；
+2. 遵守所在司法辖区法律及目标所属 SRC 平台的规则；
+3. 不将本软件用于未授权访问、数据窃取、服务中断或其他破坏性活动。
+
+作者不对任何滥用行为承担责任。**授权是使用本软件的唯一前提。**

@@ -1,0 +1,38 @@
+# 运行时生成的扫描数据（含潜在目标信息，严禁提交）
+recon/
+findings/
+reports/
+data/
+*.db
+*.sqlite
+*.sqlite3
+audit_log.db
+
+# 用户授权范围与密钥（绝对禁止提交）
+config/scope.yaml
+config/*.local.yaml
+.env
+*.env
+*_key*.txt
+*secret*
+
+# 一键熔断开关（含 .bak 失效备份）
+KILL_SWITCH*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# 工具链缓存
+tools/
+bin/
+.nuclei/
+.gau/
+wayback/
+
+# 系统
+.DS_Store
+Thumbs.db
